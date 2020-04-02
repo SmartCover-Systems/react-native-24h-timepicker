@@ -11,13 +11,10 @@ class TimePicker extends Component {
     this.state = { selectedHour, selectedMinute };
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { selectedHour, selectedMinute } = nextProps;
-    if (
-      selectedHour !== this.state.selectedHour ||
-      selectedMinute !== this.state.selectedMinute
-    ) {
-      this.setState({ selectedHour, selectedMinute });
+  componentDidUpdate(prevProps) {
+    if (this.props.selectedHour !== prevProps.selectedHour ||
+        this.props.selectedMinute !== prevProps.selectedMinute) {
+      this.setState({ selectedHour: this.props.selectedHour, selectedMinute: this.props.selectedMinute });
     }
   }
 
